@@ -6,7 +6,7 @@ Template engine server by JavaScript, a ghostwriter for your favorite web app fr
 
 ## Why
 
-I think desiners in your team don't want to remember #{template-engine-of-your-favorite-language}.
+I think designers in your team don't want to remember #{template-engine-of-your-favorite-language}.
 
 ## How to run
 
