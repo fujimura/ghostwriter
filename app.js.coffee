@@ -1,21 +1,26 @@
 express = require 'express'
+fs      = require 'fs'
+ejs     = require 'ejs'
+argv    = require('optimist')
+  .alias('p', 'port')
+  .alias('t', 'template_path')
+  .argv
+
+unless argv.template_path then throw 'no template path(-t) was given'
+unless argv.port          then throw 'no port number(-p) was given'
+
 app = express.createServer()
 app.use express.bodyParser()
 
-fs = require 'fs'
-ejs = require 'ejs'
-
 app.post '*', (req, res) ->
   path = req.path.replace /\/$/, ''
-  fs.readFile './templates' + path + '.ejs', 'utf-8', (err, data) ->
-    if (err)
-      res.send {message: err.message}, 404
-    else
-      try
-        console.log '200'
-        res.send ejs.render data, req.body
-      catch error
-        console.log error
-        res.send {message: error.message}, 500
+  fs.readFile argv.template_path + path + '.ejs', 'utf-8', (err, data) ->
+    if err then return (res.send {message: err.message}, 404)
+    try
+      res.send ejs.render data, req.body
+      console.log '200'
+    catch error
+      res.send {message: error.message}, 500
+      console.log error
 
-app.listen(3000)
+app.listen argv.port
