@@ -6,14 +6,15 @@ Template engine server by JavaScript, a ghostwriter for your favorite web app fr
 
 ## Why
 
-I think designers in your team don't want to remember #{template-engine-of-your-favorite-language}.
+I think designers in your team don't want to understand #{template-engine-of-your-favorite-language}.
+
 
 ## How to run
 
     $ git clone git://github.com/fujimura/ghostwriter.git
     $ cd ghostwriter
     $ npm install -d
-    $ coffee app.js.coffee
+    $ coffee app.js.coffee -p 3000 -t ./templates
 
 ## Example
 

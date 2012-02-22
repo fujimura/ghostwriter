@@ -1,6 +1,8 @@
 {
     "name": "ghostwriter"
   , "version": "0.0.1"
+  , "description": "Template engine server"
+  , "author" : "Fujimura Daisuke <me@fujimuradaisuke.com>"
   , "private": true
   , "dependencies": {
       "express": "2.5.8"
