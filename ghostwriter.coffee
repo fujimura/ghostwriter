@@ -1,6 +1,7 @@
 express = require 'express'
 fs      = require 'fs'
 ejs     = require 'ejs'
+connect = require('connect')
 argv    = require('optimist')
   .alias('p', 'port')
   .alias('t', 'template_path')
@@ -11,6 +12,7 @@ unless argv.port          then throw 'no port number(-p) was given'
 
 app = express.createServer()
 app.use express.bodyParser()
+app.use connect.logger({ format: ':method :status :url' })
 
 app.post '*', (req, res) ->
   path = req.path.replace /\/$/, ''
@@ -18,9 +20,7 @@ app.post '*', (req, res) ->
     if err then return (res.send {message: err.message}, 404)
     try
       res.send ejs.render data, req.body
-      console.log '200'
     catch error
       res.send {message: error.message}, 500
-      console.log error
 
 app.listen argv.port
