@@ -13,14 +13,16 @@ I think designers in your team don't want to understand #{template-engine-of-you
 
     $ git clone git://github.com/fujimura/ghostwriter.git
     $ cd ghostwriter
-    $ npm install -d
-    $ coffee app.js.coffee -p 3000 -t ./templates
+    $ npm install . -g
+    $ ghostwriter -p 3000 -t ./examples
 
 ## Example
 
-    $ cat templates/hello.html.ejs
+    $ cat examples/hello.html.ejs
     Hello, my name is <%= name %>
-    $ curl -d 'name=Mad Skillz' -i localhost:3000/hello.html
+    $ curl -d '{"name":"Mad Skillz"}'          \
+           -H "Content-Type: application/json" \
+            http://localhost:3000/hello.html
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Content-Type: text/html; charset=utf-8
@@ -28,7 +30,6 @@ I think designers in your team don't want to understand #{template-engine-of-you
     Connection: keep-alive
 
     Hello, my name is Mad Skillz
-
 
 ## Licence
 
